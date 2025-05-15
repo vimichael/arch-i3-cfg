@@ -1,0 +1,37 @@
+# i3blocks config example
+
+
+# CPU usage Block
+[cpu]
+command=top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1"%"}'
+interval=5
+label=cpu 
+color=#9b8d7f
+
+# Battery Block
+[battery]
+command=acpi -b | grep -o '[0-9]*%' | tr -d '%'
+interval=30
+label=battery 
+color=#9b8d7f
+
+# Memory Usage Block
+[memory]
+command=free -h | awk '/^Mem/ {print $3 "/" $2}'
+interval=10
+label=mem 
+color=#9b8d7f
+
+# Volume Block
+[volume]
+command=pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}'
+interval=1
+label=vol 
+color=#9b8d7f
+
+# Date/Time Block
+[time]
+command=date "+%Y-%m-%d %H:%M:%S "
+interval=1
+label=time 
+color=#9b8d7f
